@@ -1,171 +1,127 @@
-'use client';
+"use client";
+import React, { useState } from "react";
 
-import React, { useState } from 'react';
+export default function TattooSubmissionForm() {
+  const [submitted, setSubmitted] = useState(false);
 
-export default function SubmissionForm() {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    dob: '',
-    phone: '',
-    email: '',
-    traveling: '',
-    city: '',
-    state: '',
-    placement: '',
-    description: '',
-    days: [] as string[],
-    sessions: '',
-    areaPhoto: null as File | null,
-    referencePhoto: null as File | null,
-    questions: '',
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData((prev) => ({
-        ...prev,
-        days: checked
-          ? [...prev.days, value]
-          : prev.days.filter((d) => d !== value),
-      }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, files } = e.target;
-    if (files && files[0]) setFormData((prev) => ({ ...prev, [name]: files[0] }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('submitting');
-
-    const upload = async (file: File | null) => {
-      if (!file) return null;
-      const body = new FormData();
-      body.append('file', file);
-      const res = await fetch('https://api.anonfiles.com/upload', { method: 'POST', body });
-      const data = await res.json();
-      return data.status ? data.data.file.url.full : null;
-    };
-
-    const areaPhotoUrl = await upload(formData.areaPhoto);
-    const referencePhotoUrl = await upload(formData.referencePhoto);
-
-    const res = await fetch('/api/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...formData, areaPhotoUrl, referencePhotoUrl }),
-    });
-
-    if (res.ok) setStatus('success');
-    else setStatus('error');
+    setSubmitted(true);
   };
+
+  if (submitted) {
+    return (
+      <div className="success-message">
+        <h2>Your submission form is on its way!</h2>
+        <p>
+          We are excited to work with you and create the best tattoo experience
+          possible. <br />
+          Thanks for trusting <strong>Broken Art!</strong>
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <main className="form-container">
-      <div className="header">
-        <img src="/bat-logo.png" alt="Broken Art Tattoo Logo" className="logo" />
-        <h1>BROKEN ART TATTOO — SUBMISSION FORM</h1>
-      </div>
+    <div className="form-container">
+      <img
+        src="/logo.png"
+        alt="Broken Art Tattoo Logo"
+        className="logo"
+      />
+      <h1 className="title">BROKEN ART TATTOO — SUBMISSION FORM</h1>
 
-      {status === 'success' ? (
-        <p className="success">
-          Your submission form is on its way.<br />
-          We are excited to work with you and create the best tattoo experience possible.<br />
-          Thanks for trusting Broken Art!
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name<span className="required">*</span>
+        </label>
+        <div className="split">
+          <input type="text" placeholder="First" required />
+          <input type="text" placeholder="Last" required />
+        </div>
+
+        <label>
+          Date of Birth<span className="required">*</span>
+        </label>
+        <input type="date" required />
+
+        <label>
+          Phone Number<span className="required">*</span>
+        </label>
+        <input type="tel" placeholder="(000) 000-0000" required />
+
+        <label>
+          Email<span className="required">*</span>
+        </label>
+        <input type="email" placeholder="example@email.com" required />
+
+        <label>
+          Will you be traveling for this appointment?<span className="required">*</span>
+        </label>
+        <div className="radio">
+          <label><input type="radio" name="travel" required /> Yes</label>
+          <label><input type="radio" name="travel" /> No</label>
+        </div>
+
+        <div className="split">
+          <input type="text" placeholder="City" required />
+          <input type="text" placeholder="State" required />
+        </div>
+
+        <label>
+          Placement<span className="required">*</span>
+        </label>
+        <input type="text" placeholder="Ribs, arms, legs, etc." required />
+
+        <label>
+          Brief Description<span className="required">*</span>
+        </label>
+        <textarea placeholder="Please describe your vision or idea" required />
+
+        <label>
+          Upload a photo of the area<span className="required">*</span>
+        </label>
+        <input type="file" accept="image/*" required />
+
+        <label>
+          Upload reference images<span className="required">*</span>
+        </label>
+        <input type="file" accept="image/*" multiple required />
+
+        <label>
+          Preferred Days of the Week<span className="required">*</span>
+        </label>
+        <div className="checkboxes">
+          <label><input type="checkbox" /> Tuesday</label>
+          <label><input type="checkbox" /> Wednesday</label>
+          <label><input type="checkbox" /> Friday</label>
+          <label><input type="checkbox" /> Saturday</label>
+          <label><input type="checkbox" /> Other</label>
+        </div>
+
+        <label>
+          How many sessions would you like?<span className="required">*</span>
+        </label>
+        <input type="text" placeholder="e.g. 2–3" required />
+
+        <h3>BOOKING TERMS</h3>
+        <p>A deposit is required for each tattoo booking. Deposits are non-refundable.</p>
+
+        <h3>DESIGN POLICY</h3>
+        <p>
+          Designs are created for aesthetic and longevity. Artist has final approval.
         </p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div className="grid two-col">
-            <label>
-              Name*<input name="firstName" placeholder="First" required onChange={handleChange} />
-            </label>
-            <label>
-              <span style={{ visibility: 'hidden' }}>Last</span>
-              <input name="lastName" placeholder="Last" required onChange={handleChange} />
-            </label>
-          </div>
 
-          <label>
-            Date of Birth*<input type="date" name="dob" required onChange={handleChange} />
-          </label>
-          <label>
-            Phone Number*<input name="phone" placeholder="(000) 000-0000" required onChange={handleChange} />
-          </label>
-          <label>
-            Email*<input type="email" name="email" placeholder="example@email.com" required onChange={handleChange} />
-          </label>
+        <h3>RESCHEDULE POLICY</h3>
+        <p>
+          Lose 100% of deposit if rescheduled within 7 days of appointment.
+        </p>
 
-          <fieldset>
-            <legend>Will you be traveling for this appointment?*</legend>
-            <label><input type="radio" name="traveling" value="Yes" required onChange={handleChange} /> Yes</label>
-            <label><input type="radio" name="traveling" value="No" required onChange={handleChange} /> No</label>
-          </fieldset>
+        <label>Additional Questions</label>
+        <textarea placeholder="Any other details?" />
 
-          <div className="grid two-col">
-            <label>
-              City<input name="city" onChange={handleChange} />
-            </label>
-            <label>
-              State<input name="state" onChange={handleChange} />
-            </label>
-          </div>
-
-          <label>
-            Placement*<input name="placement" placeholder="Ribs, arms, legs, etc." required onChange={handleChange} />
-          </label>
-
-          <label>
-            Brief Description*<textarea name="description" placeholder="Describe your vision or idea" required onChange={handleChange} />
-          </label>
-
-          <label>
-            Upload a photo of the area*<input type="file" name="areaPhoto" required onChange={handleFile} />
-          </label>
-          <label>
-            Upload reference images*<input type="file" name="referencePhoto" required onChange={handleFile} />
-          </label>
-
-          <fieldset>
-            <legend>Preferred Days of the Week*</legend>
-            {['Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Other'].map((day) => (
-              <label key={day}>
-                <input type="checkbox" value={day} onChange={handleChange} /> {day}
-              </label>
-            ))}
-          </fieldset>
-
-          <label>
-            How many sessions would you like?*<input name="sessions" placeholder="e.g. 2-3" required onChange={handleChange} />
-          </label>
-
-          <section className="policies">
-            <h2>BOOKING TERMS</h2>
-            <p>A deposit is required for each tattoo booking. Deposits are non-refundable.</p>
-            <h2>DESIGN POLICY</h2>
-            <p>Designs are created for aesthetic and longevity. Artist has final approval.</p>
-            <h2>RESCHEDULE POLICY</h2>
-            <p>Lose 100% of deposit if rescheduled within 7 days of appointment.</p>
-          </section>
-
-          <label>
-            Additional Questions<textarea name="questions" onChange={handleChange} />
-          </label>
-
-          <button type="submit" disabled={status === 'submitting'}>
-            {status === 'submitting' ? 'Sending...' : 'Submit'}
-          </button>
-
-          {status === 'error' && <p className="error">Something went wrong. Please try again.</p>}
-        </form>
-      )}
-    </main>
+        <button type="submit" className="submit-btn">Submit</button>
+      </form>
+    </div>
   );
 }
