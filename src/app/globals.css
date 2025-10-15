@@ -92,3 +92,12 @@ p {
   text-align: center;
   padding: 3rem 1rem;
 }
+a[href^="mailto:"] {
+  color: red;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a[href^="mailto:"]:hover {
+  text-decoration: underline;
+}
