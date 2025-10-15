@@ -78,10 +78,8 @@ export default function TattooSubmissionForm() {
         </label>
         <textarea placeholder="Please describe your vision or idea" required />
 
-        <label>
-          Upload a photo of the area<span className="required">*</span>
-        </label>
-        <input type="file" accept="image/*" required />
+        <label>For Cover-Ups: Upload a photo of the tattoo</label>
+<input type="file" accept="image/*" />
 
         <label>
           Upload reference images<span className="required">*</span>
@@ -92,29 +90,31 @@ export default function TattooSubmissionForm() {
           Preferred Days of the Week<span className="required">*</span>
         </label>
         <div className="checkboxes">
+          <label><input type="checkbox" /> Monday</label>
           <label><input type="checkbox" /> Tuesday</label>
           <label><input type="checkbox" /> Wednesday</label>
+          <label><input type="checkbox" /> Thursday</label>
           <label><input type="checkbox" /> Friday</label>
           <label><input type="checkbox" /> Saturday</label>
-          <label><input type="checkbox" /> Other</label>
+          <label><input type="checkbox" /> Sunday</label>
         </div>
 
         <label>
-          How many sessions would you like?<span className="required">*</span>
+          How many sessions would you like? Please specify consecutive days or every week/2weeks, etc. <span className="required">*</span>
         </label>
         <input type="text" placeholder="e.g. 2–3" required />
 
         <h3>BOOKING TERMS</h3>
-        <p>A deposit is required for each tattoo booking. Deposits are non-refundable.</p>
-
+        <p>A $100 deposit is required for each session booked. some deposits are drawing charges and session deposits are applied to your last tattoo session. Deposits are non-refundable without 48 hour notice of cancellation.</p>
+          If you need to reschedule your appointment, you must email within 48 hours. This will ensure your deposit is transferred to a new booking date.
         <h3>DESIGN POLICY</h3>
         <p>
-          Designs are created for aesthetic and longevity. Artist has final approval.
+          Designs are created for aesthetic and longevity. The photo reference that you provide is only used for inspiration and the artist will not copy the work of another artist.  Artist has final approval.
         </p>
 
         <h3>RESCHEDULE POLICY</h3>
         <p>
-          Lose 100% of deposit if rescheduled within 7 days of appointment.
+          Lose 100% of deposit if rescheduled within 2 days of appointment.
         </p>
 
         <label>Additional Questions</label>
