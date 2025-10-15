@@ -16,7 +16,7 @@ export default function TattooSubmissionForm() {
         <p>
           We are excited to work with you and create the best tattoo experience
           possible. <br />
-          Thanks for trusting <strong>Broken Art!</strong>
+          Thank you for trusting <strong>Broken Art Tattoo!</strong>
         </p>
       </div>
     );
@@ -108,7 +108,7 @@ export default function TattooSubmissionForm() {
         <p>A $100 deposit is required for each session booked. First deposit is a drawing charge and session deposits are applied to your last tattoo session. Deposits are non-refundable.</p>
         <h3>DESIGN POLICY</h3>
         <p>
-          Designs are created for aesthetic and longevity. The photo reference that you provide is only used for inspiration and the artist will not copy the work of another artist.  Artist has final approval.
+          Designs are created for aesthetic and longevity. The photo reference that you provide is only used for inspiration and the artist will not copy the work of another artist.  Artist has final approval but will work with you to acheive the best results for your tattoo.
         </p>
 
         <h3>RESCHEDULE POLICY</h3>
