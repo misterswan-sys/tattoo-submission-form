@@ -24,11 +24,7 @@ export default function TattooSubmissionForm() {
 
   return (
     <div className="form-container">
-      <img
-        src="/logo.png"
-        alt="Broken Art Tattoo Logo"
-        className="logo"
-      />
+      <img src="/batlogosmall.png" alt="Broken Art Tattoo Logo" className="logo" />
       <h1 className="title">Mister Swan — SUBMISSION FORM</h1>
 
   <div className="intro">
