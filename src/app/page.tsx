@@ -58,95 +58,95 @@ export default function TattooSubmissionForm() {
 </a>
   </p>
 </div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name<span className="required">*</span>
-        </label>
-        <div className="split">
-          <input type="text" placeholder="First" required />
-          <input type="text" placeholder="Last" required />
-        </div>
+      <form onSubmit={handleSubmit} method="POST">
+  <label>
+    Name<span className="required">*</span>
+  </label>
+  <div className="split">
+    <input type="text" name="firstName" placeholder="First" required />
+    <input type="text" name="lastName" placeholder="Last" required />
+  </div>
 
-        <label>
-          Date of Birth<span className="required">*</span>
-        </label>
-        <input type="date" required />
+  <label>
+    Date of Birth<span className="required">*</span>
+  </label>
+  <input type="date" name="dob" required />
 
-        <label>
-          Phone Number<span className="required">*</span>
-        </label>
-        <input type="tel" placeholder="(000) 000-0000" required />
+  <label>
+    Phone Number<span className="required">*</span>
+  </label>
+  <input type="tel" name="phone" placeholder="(000) 000-0000" required />
 
-        <label>
-          Email<span className="required">*</span>
-        </label>
-        <input type="email" placeholder="example@email.com" required />
+  <label>
+    Email<span className="required">*</span>
+  </label>
+  <input type="email" name="email" placeholder="example@email.com" required />
 
-        <label>
-          Will you be traveling for this appointment?<span className="required">*</span>
-        </label>
-        <div className="radio">
-          <label><input type="radio" name="travel" required /> Yes</label>
-          <label><input type="radio" name="travel" /> No</label>
-        </div>
+  <label>
+    Will you be traveling for this appointment?<span className="required">*</span>
+  </label>
+  <div className="radio">
+    <label><input type="radio" name="travel" value="Yes" required /> Yes</label>
+    <label><input type="radio" name="travel" value="No" /> No</label>
+  </div>
 
-        <div className="split">
-          <input type="text" placeholder="City" required />
-          <input type="text" placeholder="State" required />
-        </div>
+  <div className="split">
+    <input type="text" name="city" placeholder="City" required />
+    <input type="text" name="state" placeholder="State" required />
+  </div>
 
-        <label>
-          Placement<span className="required">*</span>
-        </label>
-        <input type="text" placeholder="Ribs, arms, legs, etc." required />
+  <label>
+    Placement<span className="required">*</span>
+  </label>
+  <input type="text" name="placement" placeholder="Ribs, arms, legs, etc." required />
 
-        <label>
-          Brief Description<span className="required">*</span>
-        </label>
-        <textarea placeholder="Please describe your vision or idea" required />
+  <label>
+    Brief Description<span className="required">*</span>
+  </label>
+  <textarea name="description" placeholder="Please describe your vision or idea" required />
 
-        <label>For Cover-Ups: Upload a photo of the tattoo</label>
-        <input type="file" accept="image/*" />
+  <label>For Cover-Ups: Upload a photo of the tattoo</label>
+  <input type="file" name="coverupPhoto" accept="image/*" />
 
-        <label>Upload reference images</label>
-        <input type="file" accept="image/*" multiple />
-        
-        <label>
-          Preferred Days of the Week<span className="required">*</span>
-        </label>
-        <div className="checkboxes">
-          <label><input type="checkbox" /> Monday</label>
-          <label><input type="checkbox" /> Tuesday</label>
-          <label><input type="checkbox" /> Wednesday</label>
-          <label><input type="checkbox" /> Thursday</label>
-          <label><input type="checkbox" /> Friday</label>
-          <label><input type="checkbox" /> Saturday</label>
-          <label><input type="checkbox" /> Sunday</label>
-        </div>
+  <label>Upload reference images</label>
+  <input type="file" name="references" accept="image/*" multiple />
 
-        <label>
-          How many sessions would you like? Please specify consecutive days or every week/2weeks, etc. <span className="required">*</span>
-        </label>
-        <input type="text" placeholder="e.g. 2–3" required />
+  <label>
+    Preferred Days of the Week<span className="required">*</span>
+  </label>
+  <div className="checkboxes">
+    <label><input type="checkbox" name="days" value="Monday" /> Monday</label>
+    <label><input type="checkbox" name="days" value="Tuesday" /> Tuesday</label>
+    <label><input type="checkbox" name="days" value="Wednesday" /> Wednesday</label>
+    <label><input type="checkbox" name="days" value="Thursday" /> Thursday</label>
+    <label><input type="checkbox" name="days" value="Friday" /> Friday</label>
+    <label><input type="checkbox" name="days" value="Saturday" /> Saturday</label>
+    <label><input type="checkbox" name="days" value="Sunday" /> Sunday</label>
+  </div>
 
-        <h3>BOOKING TERMS</h3>
-        <p>A $100 deposit is required for each session booked. First deposit is a drawing charge and session deposits are applied to your last tattoo session. Deposits are non-refundable.</p>
-        <h3>DESIGN POLICY</h3>
-        <p>
-          Designs are created for aesthetic and longevity. The photo reference that you provide is only used for inspiration and the artist will not copy the work of another artist.  Artist has final approval but will work with you to acheive the best results for your tattoo.
-        </p>
+  <label>
+    How many sessions would you like?<span className="required">*</span>
+  </label>
+  <input type="text" name="sessions" placeholder="e.g. 2–3" required />
 
-        <h3>RESCHEDULE POLICY</h3>
-        <p>
-          Lose 100% of deposit if rescheduled within 2 days of appointment. If you need to reschedule your appointment, you must email within 48 hours. This will ensure your deposit is transferred to a new booking date.
+  <h3>BOOKING TERMS</h3>
+  <p>A $100 deposit is required for each session booked. First deposit is a drawing charge and session deposits are applied to your last tattoo session. Deposits are non-refundable.</p>
 
-        </p>
+  <h3>DESIGN POLICY</h3>
+  <p>
+    Designs are created for aesthetic and longevity. The photo reference that you provide is only used for inspiration and the artist will not copy the work of another artist. Artist has final approval but will work with you to achieve the best results for your tattoo.
+  </p>
 
-        <label>Additional Questions</label>
-        <textarea placeholder="Any other details?" />
+  <h3>RESCHEDULE POLICY</h3>
+  <p>
+    Lose 100% of deposit if rescheduled within 2 days of appointment. If you need to reschedule your appointment, you must email within 48 hours. This will ensure your deposit is transferred to a new booking date.
+  </p>
 
-        <button type="submit" className="submit-btn">Submit</button>
-      </form>
+  <label>Additional Questions</label>
+  <textarea name="questions" placeholder="Any other details?" />
+
+  <button type="submit" className="submit-btn">Submit</button>
+</form>
     </div>
   );
 }
