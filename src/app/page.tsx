@@ -105,8 +105,7 @@ export default function TattooSubmissionForm() {
         <input type="text" placeholder="e.g. 2–3" required />
 
         <h3>BOOKING TERMS</h3>
-        <p>A $100 deposit is required for each session booked. some deposits are drawing charges and session deposits are applied to your last tattoo session. Deposits are non-refundable without 48 hour notice of cancellation.</p>
-          If you need to reschedule your appointment, you must email within 48 hours. This will ensure your deposit is transferred to a new booking date.
+        <p>A $100 deposit is required for each session booked. First deposit is a drawing charge and session deposits are applied to your last tattoo session. Deposits are non-refundable.</p>
         <h3>DESIGN POLICY</h3>
         <p>
           Designs are created for aesthetic and longevity. The photo reference that you provide is only used for inspiration and the artist will not copy the work of another artist.  Artist has final approval.
@@ -114,7 +113,8 @@ export default function TattooSubmissionForm() {
 
         <h3>RESCHEDULE POLICY</h3>
         <p>
-          Lose 100% of deposit if rescheduled within 2 days of appointment.
+          Lose 100% of deposit if rescheduled within 2 days of appointment. If you need to reschedule your appointment, you must email within 48 hours. This will ensure your deposit is transferred to a new booking date.
+
         </p>
 
         <label>Additional Questions</label>
