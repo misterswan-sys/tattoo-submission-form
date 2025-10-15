@@ -31,7 +31,7 @@ export default function TattooSubmissionForm() {
       />
       <h1 className="title">Mister Swan — SUBMISSION FORM</h1>
 
-         <h3>All inquiries are honored and respected. Please be patient if we dont get back right away.</h3>
+         <p>All inquiries are honored and respected. Please be patient if we dont get back right away.</p>
         <p>
           Tattoo minimum is $300 and Hourly rate is $300. Full day session- $2000. Private, Bespoke Tattoo Sessions at your home -$3000
         </p>
