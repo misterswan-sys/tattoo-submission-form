@@ -35,7 +35,9 @@ export default function TattooSubmissionForm() {
     Tattoo minimum is $300. Hourly rate is $300. Full day session – $2000. <br />
     For private, bespoke tattoo sessions in your home: <br />
     Email{" "}
-    <a href="mailto:inquire@bespoke.tattoo">inquire@bespoke.tattoo</a>
+    <a href="mailto:inquire@bespoke.tattoo?subject=Request%20for%20Private%20Tattoo%20Session">
+  inquire@bespoke.tattoo
+</a>
   </p>
 </div>
       <form onSubmit={handleSubmit}>
