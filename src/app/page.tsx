@@ -4,10 +4,28 @@ import React, { useState } from "react";
 export default function TattooSubmissionForm() {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.currentTarget);
+
+  try {
+    const response = await fetch("/api/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      setSubmitted(true);
+    } else {
+      console.error("Error submitting form:", response.statusText);
+      alert("Something went wrong — please try again.");
+    }
+  } catch (error) {
+    console.error("Submission failed:", error);
+    alert("Error submitting form — please check your connection.");
+  }
+};
 
   if (submitted) {
     return (
