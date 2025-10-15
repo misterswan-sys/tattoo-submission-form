@@ -90,11 +90,9 @@ export default function TattooSubmissionForm() {
         <label>For Cover-Ups: Upload a photo of the tattoo</label>
         <input type="file" accept="image/*" />
 
-        <label>
-          Upload reference images<span className="required">*</span>
-        </label>
-        <input type="file" accept="image/*" multiple required />
-
+        <label>Upload reference images</label>
+        <input type="file" accept="image/*" multiple />
+        
         <label>
           Preferred Days of the Week<span className="required">*</span>
         </label>
